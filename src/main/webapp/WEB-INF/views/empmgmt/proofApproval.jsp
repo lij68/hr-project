@@ -160,7 +160,7 @@ section .section-title {
 			var cash = node.data.cash;
 			var profile = node.data.receipt;
 			console.log(cash+profile);
-		document.getElementById('profileImg').setAttribute("src","${pageContext.request.contextPath}/insa/profile/"+cash+"."+profile);},
+		document.getElementById('profileImg').setAttribute("src","${pageContext.request.contextPath}/profile/"+cash+"."+profile);},
 		defaultColDef : {
 				editable : false,
 				width : 100

@@ -61,7 +61,8 @@ function showResumeListGrid(resumeInfolist) {
 	console.log(resumeInfolist, "resumeInfolist");
 	ResumeListGridOptions = {
 		columnDefs : columnDef, //  정의된 칼럼 정보를 넣어준다. 
-		rowData : resumeInfolist, // 그리드 데이터, json data를 넣어준다. 
+		rowData : resumeInfolist, // 그리드 데이터, json data를 넣어준다.
+		rowSelection: 'single',
 		enableColResize : true, // 칼럼 리사이즈 허용 여부
 		enableSorting : true, // 정렬 옵션 허용 여부
 		enableFilter : true, // 필터 옵션 허용 여부
@@ -95,7 +96,6 @@ function showResumeListGrid(resumeInfolist) {
 		onGridSizeChanged : function(event) { // 창 크기 변경 되었을 때 이벤트 
 			event.api.sizeColumnsToFit();
 		}
-		
 	};
 	let eGridDiv = document.querySelector('#empSelect_grid');
 	console.log(columnDef);

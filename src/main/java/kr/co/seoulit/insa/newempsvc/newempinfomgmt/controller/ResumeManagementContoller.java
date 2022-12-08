@@ -10,11 +10,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
+import kr.co.seoulit.insa.newempsvc.documentmgmt.to.ConditionTO;
 import kr.co.seoulit.insa.newempsvc.newempinfomgmt.service.NewEmpInfoService;
 import kr.co.seoulit.insa.newempsvc.newempinfomgmt.to.NewResumeTO;
 import kr.co.seoulit.insa.newempsvc.newempinfomgmt.to.PersonalityInterviewTO;
@@ -32,9 +32,9 @@ public class ResumeManagementContoller
 	@GetMapping("/resumemgmt")
 	public ModelMap resumeList(HttpServletRequest request, HttpServletResponse response)
 	{
-		String sendData = request.getParameter("sendData");
 		map = new ModelMap();
 		try {
+			String sendData = request.getParameter("sendData");
 			JSONObject json = JSONObject.fromObject(sendData);
 			int year = Integer.parseInt((String) json.get("year"));
 			String half = json.getString("half");
@@ -53,8 +53,8 @@ public class ResumeManagementContoller
 	public ModelMap resumeUpdate(HttpServletRequest request, HttpServletResponse response)
 	{
 		map = new ModelMap();
-		String sendData = request.getParameter("sendData");
 		try {
+			String sendData = request.getParameter("sendData");
 			Gson gson = new Gson();
 			NewResumeTO nemp = gson.fromJson(sendData, NewResumeTO.class);
 			newempInfoService.updateresumeNewemp(nemp);
@@ -67,10 +67,11 @@ public class ResumeManagementContoller
 	}
 	
 	@GetMapping("/newCode")
-	public ModelMap resumeNewCode(@RequestParam("sendData") String sendData, HttpServletResponse response)
+	public ModelMap resumeNewCode(HttpServletRequest request, HttpServletResponse response)
 	{
 		map = new ModelMap();
 		try {
+			String sendData = request.getParameter("sendData");
 			JSONObject json = JSONObject.fromObject(sendData);
 			int year = Integer.parseInt((String) json.get("year"));
 			int half = Integer.parseInt((String) json.get("half"));
@@ -89,9 +90,9 @@ public class ResumeManagementContoller
 	@PutMapping("/newapplicationreg")
 	public ModelMap newApplicationReg(HttpServletRequest request, HttpServletResponse response)
 	{
-		String sendData = request.getParameter("sendData");
 		map = new ModelMap();
 		try {
+			String sendData = request.getParameter("sendData");
 			System.out.println(sendData);
 			Gson gson = new Gson();
 			NewResumeTO resume = gson.fromJson(sendData, NewResumeTO.class);

@@ -1,75 +1,111 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>CODE</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/insa/script/jquery-ui/jquery-ui.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/insa/script/jqgrid/css/ui.jqgrid.css" />
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/insa/script/jqgrid/plugins/ui.multiselect.css" />
-<script
-	src="${pageContext.request.contextPath}/insa/script/jquery/jquery-3.3.1.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/insa/script/jqgrid/js/i18n/grid.locale-kr.js"></script>
-<script
-	src="${pageContext.request.contextPath}/insa/script/jqgrid/js/jquery.jqGrid.min.js"></script>
-<script>
-	$(document).ready(function() {
-		if ("${param.code}" == "") {
-			console.log("showCode@@")
-			showCode();
-		} else {
-			console.log("showdept@@")
-			showdept();
-		}
-		
-		var pre = opener.document; //부모창
-		
-		function showdept() {
-			
-			$('#grid').jqGrid({
-				url : '${pageContext.request.contextPath}/systemmgmt/codelist',
-				postData : {
-					code : "${param.code}"
-				},
-				datatype : 'json',
-				jsonReader : {root : 'detailCodeList'},
-				colNames : [ '코드번호', '코드명' ],
-				colModel : [ 
-					{name : 'detailCodeNumber', width : 0,	editable : true },
-					{name : 'detailCodeName', width : 300, 	editable : true },
-				],
-				width : '300',
-				viewrecords : true, //처리속도 빠름
-				onSelectRow : function(rowId) {
-					console.log(rowId);
-					
-					if ("${param.inputCode}" != "") {
-						var codeNumber = $("#grid").getCell(rowId,"detailCodeNumber");
-						$("#${param.inputCode}",opener.document).val(codeNumber);
-					}
-					
-                    var codeName = $("#grid").getCell(rowId,"detailCodeName");
-					$("#${param.inputText}", opener.document).val(codeName);
-					window.close();
-				},
-				loadError : function(xhr) {
-													//alert(xhr.readyStatus+","+xhr.status+","+xhr.statusText);
-					if (xhr.status == 500) {
-						alert("Internal Server Error");
-					}
-				}
-			});
-			$("#grid").jqGrid("hideCol", [ 'detailCodeNumber' ]);
-		}
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>CODE</title>
+	<link rel="stylesheet"
+		  href="${pageContext.request.contextPath}/script/jquery-ui/jquery-ui.min.css">
+	<link rel="stylesheet"
+		  href="${pageContext.request.contextPath}/script/jqgrid/css/ui.jqgrid.css" />
+	<link rel="stylesheet" type="text/css"
+		  href="${pageContext.request.contextPath}/script/jqgrid/plugins/ui.multiselect.css" />
+	<script
+			src="${pageContext.request.contextPath}/script/jquery/jquery-3.3.1.min.js"></script>
+	<script
+			src="${pageContext.request.contextPath}/script/jqgrid/js/i18n/grid.locale-kr.js"></script>
+	<script
+			src="${pageContext.request.contextPath}/script/jqgrid/js/jquery.jqGrid.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			console.log("${param.name}"); //호봉습긍
 
-		function showCode() {
-			$('#grid').jqGrid({
-				url : '${pageContext.request.contextPath}/systemmgmt/code/rest',
+			if("${param.name}" == '호봉승급') {
+				console.log('고니')
+				showAppointment(); // 실행되네 밑에 출력되니까
+				console.log('showAppointment함수실행완료');
+
+			} else if("${param.code}" == "") {
+				console.log("showCode@@")
+				showCode();
+			}else {
+				console.log("showdept@@")
+				showdept();
+			}
+
+			var pre = opener.document; //부모창
+
+			function showAppointment() {
+
+				$('#grid').jqGrid({
+					url : '${pageContext.request.contextPath}/systemmgmt/codelist/appointment',
+					datatype : 'json',
+					jsonReader : {root : 'appName'},
+					colNames : [ '발령구분명' ],
+					colModel : [
+						{name : 'appointmentName', width : 300,    editable : true },
+					],
+					width : '300',
+					viewrecords : true, //처리속도 빠름
+					onSelectRow : function(rowId) {
+						console.log(rowId);
+						var appName = $("#grid").getCell(rowId,"appointmentName");
+						$("#appointment_sort",opener.document).val(appName);
+						window.close();
+					},
+					loadError : function(xhr) {
+						//alert(xhr.readyStatus+","+xhr.status+","+xhr.statusText);
+						if (xhr.status == 500) {
+							alert("Internal Server Error");
+						}
+					}
+				});
+				$("#grid").jqGrid("hideCol", [ 'detailCodeNumber' ]);
+			}
+
+
+			function showdept() {
+
+				$('#grid').jqGrid({
+					url : '${pageContext.request.contextPath}/systemmgmt/codelist',
+					postData : {
+						code : "${param.code}"
+					},
+					datatype : 'json',
+					jsonReader : {root : 'detailCodeList'},
+					colNames : [ '코드번호', '코드명' ],
+					colModel : [
+						{name : 'detailCodeNumber', width : 0,   editable : true },
+						{name : 'detailCodeName', width : 300,    editable : true },
+					],
+					width : '300',
+					viewrecords : true, //처리속도 빠름
+					onSelectRow : function(rowId) {
+						console.log(rowId);
+
+						if ("${param.inputCode}" != "") {
+							var codeNumber = $("#grid").getCell(rowId,"detailCodeNumber");
+							$("#${param.inputCode}",opener.document).val(codeNumber);
+						}
+
+						var codeName = $("#grid").getCell(rowId,"detailCodeName");
+						$("#${param.inputText}", opener.document).val(codeName);
+						window.close();
+					},
+					loadError : function(xhr) {
+						//alert(xhr.readyStatus+","+xhr.status+","+xhr.statusText);
+						if (xhr.status == 500) {
+							alert("Internal Server Error");
+						}
+					}
+				});
+				$("#grid").jqGrid("hideCol", [ 'detailCodeNumber' ]);
+			}
+
+			function showCode() {
+				$('#grid').jqGrid({
+					url : '${pageContext.request.contextPath}/systemmgmt/code/rest',
 					postData : {
 						code1 : "${param.code1}",
 						code2 : "${param.code2}",
@@ -78,7 +114,7 @@
 					datatype : 'json',
 					jsonReader : { root : 'detailCodeList'},
 					colNames : [ '코드번호', '코드명' ],
-					colModel : [ 
+					colModel : [
 						{ name : 'detailCodeNumber', width : 0, editable : true },
 						{ name : 'detailCodeName', width : 300, editable : true },
 					],
@@ -88,14 +124,14 @@
 						console.log("ddd22z!!@@")
 						if ("${param.inputCode}" != "") {
 							var codeNumber = $("#grid").getCell(rowId,"detailCodeNumber");
-							$("#${param.inputCode}",opener.document).val(codeNumber);   
+							$("#${param.inputCode}",opener.document).val(codeNumber);
 						}
 						var codeName = $("#grid").getCell(rowId, "detailCodeName");
 						$("#${param.inputText}", opener.document).val(codeName);
 						window.close();
 					},
 					loadError : function(xhr) {
-					//alert(xhr.readyStatus+","+xhr.status+","+xhr.statusText);
+						//alert(xhr.readyStatus+","+xhr.status+","+xhr.statusText);
 						if (xhr.status == 500) {
 							alert("Internal Server Error");
 						}
@@ -104,11 +140,11 @@
 				$("#grid").jqGrid("hideCol", [ 'detailCodeNumber' ]);
 			}
 		});
-</script>
+	</script>
 </head>
 <body>
-	<div>
-		<table id="grid"></table>
-	</div>
+<div>
+	<table id="grid"></table>
+</div>
 </body>
 </html>

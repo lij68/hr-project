@@ -95,7 +95,7 @@ function showEmpListDeptGrid() {
 		onRowClicked : function(node) {
 			var empCode = node.data.empCode;
 			var profile = node.data.imgExtend;
-			document.getElementById('profileImg').setAttribute("src","${pageContext.request.contextPath}/insa/profile/" + empCode + "." + profile);
+			document.getElementById('profileImg').setAttribute("src","${pageContext.request.contextPath}/profile/" + empCode + "." + profile);
 			$.ajax({
 				url : "${pageContext.request.contextPath}/empinfomgmt/empdetail/all",
 				data : {
@@ -155,7 +155,7 @@ function showEmpListNameGrid() {
 		onCellClicked : function(node) {
 			var empCode = node.data.empCode;
 			var profile = node.data.imgExtend;
-			document.getElementById('profileImg').setAttribute("src", "${pageContext.request.contextPath}/insa/profile/" + empCode + "." + profile);
+			document.getElementById('profileImg').setAttribute("src", "${pageContext.request.contextPath}/profile/" + empCode + "." + profile);
 			$.ajax({
 				url : "${pageContext.request.contextPath}/empinfomgmt/empdetail/all",
 				data : {
@@ -515,7 +515,7 @@ function showEmpImg() {
 
 	if (selectedEmpBean.imgExtend != null) {
 		if (selectedEmpBean.detailInfo.imgExtend != null) {
-			path = "${pageContext.request.contextPath}/insa/profile/";
+			path = "${pageContext.request.contextPath}/profile/";
 			path += selectedEmpBean.empCode;
 			path += "." + selectedEmpBean.imgExtend;
 		}
@@ -586,7 +586,7 @@ function showDetailInfo() {
 	$("#postNumber").val(selectedEmpBean.postNumber);
 	$("#email").val(selectedEmpBean.email);
 	$("#lastSchool").val(selectedEmpBean.lastSchool);
-	$("#profileImg").attr("src","${pageContext.request.contextPath}/insa/profile/"+ selectedEmpBean.empCode + "."+ selectedEmpBean.imgExtend);
+	$("#profileImg").attr("src","${pageContext.request.contextPath}/profile/"+ selectedEmpBean.empCode + "."+ selectedEmpBean.imgExtend);
 }
 						
 function showWorkInfoListGrid() {
@@ -1002,7 +1002,7 @@ showLicenseInfoListGrid();
 			changeMonth : true,
 			changeYear : true,
 			showOn:"button",
-			buttonImage:"${pageContext.request.contextPath}/insa/image/cal.png",
+			buttonImage:"${pageContext.request.contextPath}/image/cal.png",
 			buttonImageOnly:true,
 			dateFormat : "yy/mm/dd",
 			yearRange: "1900:2030",
@@ -1058,7 +1058,7 @@ showLicenseInfoListGrid();
 		<div id="tabs-0" align="left">
 			<!-- 사진박스 -->
 			<div id="divImg">
-				<img id="profileImg" src="${pageContext.request.contextPath}/insa/profile/profile.png" width="180px" height="200px"><br>
+				<img id="profileImg" src="${pageContext.request.contextPath}/profile/profile.png" width="180px" height="200px"><br>
 				<form id="emp_img_form" action="${pageContext.request.contextPath }/foudinfomgmt/empImg.do" enctype="multipart/form-data" method="post">
 					<input type="hidden" name="empCode" id="emp_img_empCode">
 					<input type="file" name="empImgFile" style="display: none;" id="emp_img_file" onChange="readURL(this)">

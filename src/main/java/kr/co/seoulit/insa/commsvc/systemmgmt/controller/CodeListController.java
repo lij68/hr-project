@@ -8,7 +8,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import kr.co.seoulit.insa.commsvc.systemmgmt.service.SystemMgmtService;
 import kr.co.seoulit.insa.commsvc.systemmgmt.to.CodeTO;
@@ -26,9 +25,11 @@ public class CodeListController {
    ModelMap map = null;
 
    @GetMapping("codelist")
-   public ModelMap detailCodelist(@RequestParam("code") String code, HttpServletResponse response) {
+   public ModelMap detailCodelist(HttpServletRequest request, HttpServletResponse response) {
       System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@메롱");
       map = new ModelMap();
+      String code = request.getParameter("code");
+
       try {
          ArrayList<DetailCodeTO> detailCodeList = systemMgmtService.findDetailCodeList(code);
 
@@ -45,10 +46,14 @@ public class CodeListController {
    }
 
    @GetMapping("code/rest")
-   public ModelMap detailCodelistRest(@RequestParam("code1") String code1, @RequestParam("code2") String code2,
-		   @RequestParam("code3") String code3, HttpServletResponse response) {
+   public ModelMap detailCodelistRest(HttpServletRequest request, HttpServletResponse response) {
 
       map = new ModelMap();
+
+      String code1 = request.getParameter("code1");
+      String code2 = request.getParameter("code2");
+      String code3 = request.getParameter("code3");
+
       try {
 
          ArrayList<DetailCodeTO> detailCodeList = systemMgmtService.findDetailCodeListRest(code1, code2, code3);

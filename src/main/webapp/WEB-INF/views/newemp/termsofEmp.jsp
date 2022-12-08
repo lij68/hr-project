@@ -199,7 +199,7 @@
 					{
 						if( event.data.hwp_file == "채용공고_무관.hwp")
 							event.data.hwp_file = "채용공고_전체.hwp"
-						location.href ="${pageContext.request.contextPath}/insa/termfile/"+event.data.hwp_file;
+						location.href ="${pageContext.request.contextPath}/termfile/"+event.data.hwp_file;
 					}
 				};
 			

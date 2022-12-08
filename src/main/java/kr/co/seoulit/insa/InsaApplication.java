@@ -19,9 +19,6 @@ public class InsaApplication {
 		filter.setFilter(new SiteMeshFilter());
 		return filter;
 
-
-
-
 	}
 	
 }

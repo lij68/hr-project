@@ -33,12 +33,12 @@ public class RecruitmentApprovalController
 	@GetMapping("/newemprecruit")
 	public ModelMap newempRecruitInfo(HttpServletRequest request, HttpServletResponse response)
 	{
-		String sendData = request.getParameter("sendData");
 		map = new ModelMap();
 		try
 		{
+			String sendData = request.getParameter("sendData");
 			JSONObject json = JSONObject.fromObject(sendData);
-			int year = Integer.parseInt( (String)json.get("year") );
+			int year = Integer.parseInt((String) json.get("year"));
 			String half = json.getString("half");
 
 			ArrayList<RecruitmentTO> list = documentMgmtService.FindNewemprecruit(year, half);
@@ -62,13 +62,14 @@ public class RecruitmentApprovalController
 	@PutMapping("/newemprecruit")
 	public ModelMap newempRegist(HttpServletRequest request, HttpServletResponse response)
 	{
-		String sendData = request.getParameter("sendData");
 		map = new ModelMap();
 		try
 		{
+			String sendData = request.getParameter("sendData");
 			System.out.println(sendData);
 			Gson gson = new Gson();
 			ArrayList<RecruitmentTO> dataList = gson.fromJson(sendData ,new TypeToken<ArrayList<RecruitmentTO>>(){}.getType());
+			int i = 0;
 			for(RecruitmentTO to : dataList)
 			{
 				if ( to.getApprovalStatus().equals("대기") )

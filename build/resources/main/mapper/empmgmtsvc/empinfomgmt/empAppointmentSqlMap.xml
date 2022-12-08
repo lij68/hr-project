@@ -31,6 +31,7 @@
 		<result property="dispatchDate" column="DISPATCH_DATE"/>
 		<result property="dispatchReturnDate" column="DISPATCH_RETURN_DATE"/>
 		<result property="dispatchPosition" column="DISPATCH_POSITION"/>
+		<result property="dispatchDept" column="DISPATCH_DEPT"/>
 		<result property="lastWorkplace" column="LAST_WORKPLACE"/>
 		<result property="lastRegion" column="LAST_REGION"/>
 		<result property="lastHobong" column="LAST_HOBONG"/>
@@ -61,8 +62,8 @@
 				#{empCode, jdbcType=VARCHAR, javaType=java.lang.String, mode=IN},
 				#{hosu, jdbcType=VARCHAR, javaType=java.lang.String, mode=IN},
 				#{afterChange, jdbcType=VARCHAR, javaType=java.lang.String, mode=IN},
-				TO_DATE(#{startDate, jdbcType=DATE, javaType=java.lang.String, mode=IN},'YYYY-MM-DD'),
-				TO_DATE(#{endDate, jdbcType=DATE, javaType=java.lang.String, mode=IN},'YYYY-MM-DD'),
+				#{startDate, jdbcType=DATE, javaType=java.lang.String, mode=IN},
+				#{endDate, jdbcType=DATE, javaType=java.lang.String, mode=IN},
 				#{type, jdbcType=VARCHAR, javaType=java.lang.String, mode=IN}
 			)}
 		]]>
@@ -292,7 +293,7 @@
 		<result property="approvalStatus" column="APPROVAL_STATUS"/>
 	</resultMap>
 
-	<select id="selectChangeDetailList" parameterType="string" resultMap="changeDetailList">
+	<select id="selectChangeDetailList" parameterType="String" resultMap="changeDetailList">
 		SELECT *
 		FROM (SELECT ae.EMP_CODE,
 					 ae.HOSU,
@@ -302,7 +303,7 @@
 			  FROM APPOINTMENT_EMP ae,
 				   DEPT_MOVE dm
 			  WHERE ae.EMP_CODE = dm.EMP_CODE
-				AND dm.hosu = #{hosu}
+				AND dm.hosu = #{hosu, jdbcType=VARCHAR}
 
 			  UNION ALL
 
@@ -314,7 +315,7 @@
 			  FROM APPOINTMENT_EMP ae,
 				   POSITION_PROMOTION pp
 			  WHERE ae.EMP_CODE = pp.EMP_CODE
-				AND  pp.hosu = #{hosu}
+				AND pp.hosu = #{hosu, jdbcType=VARCHAR}
 
 			  UNION ALL
 
@@ -326,7 +327,7 @@
 			  FROM APPOINTMENT_EMP ae,
 				   HOBONG_PROMOTION hp
 			  WHERE ae.EMP_CODE = hp.EMP_CODE
-				AND hp.hosu = #{hosu}
+				AND hp.hosu = #{hosu, jdbcType=VARCHAR}
 
 			  UNION ALL
 
@@ -338,7 +339,7 @@
 			  FROM APPOINTMENT_EMP ae,
 				   DISPATCH d
 			  WHERE ae.EMP_CODE = d.EMP_CODE
-				AND d.hosu = #{hosu}
+				AND d.hosu = #{hosu, jdbcType=VARCHAR}
 
 			  UNION ALL
 
@@ -350,7 +351,7 @@
 			  FROM APPOINTMENT_EMP ae,
 				   LEAVE l
 			  WHERE ae.EMP_CODE = l.EMP_CODE
-				AND l.hosu = #{hosu}
+				AND l.hosu = #{hosu, jdbcType=VARCHAR}
 
 			  UNION ALL
 
@@ -362,9 +363,9 @@
 			  FROM APPOINTMENT_EMP ae,
 				   RETIREMENT r
 			  WHERE ae.EMP_CODE = r.EMP_CODE
-				AND r.hosu = #{hosu})
+				AND r.hosu = #{hosu, jdbcType=VARCHAR})
 		WHERE EMP_CODE = #{empCode}
-		  AND hosu = #{hosu}
+		  AND hosu = #{hosu, jdbcType=VARCHAR}
 	</select>
 
 	<update id="updateAppointment" parameterType="kr.co.seoulit.insa.empmgmtsvc.empinfomgmt.to.EmpAppointmentTO">

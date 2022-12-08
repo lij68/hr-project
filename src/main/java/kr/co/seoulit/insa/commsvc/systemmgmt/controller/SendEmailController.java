@@ -18,8 +18,6 @@ import javax.mail.internet.MimeMultipart;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -30,17 +28,15 @@ public class SendEmailController {
 //    private DataSourceTransactionManager dataSourceTransactionManager = DataSourceTransactionManager.getInstance();
     private Multipart multipart;
 	
-    public ModelMap sendEmail(@RequestParam("empCode") String empCode, @RequestParam("usage") String usage,
-    		@RequestParam("requestDay") String requestDay, @RequestParam("useDay") String useDay, @RequestParam("eMail") String email,
-    		HttpServletRequest request, HttpServletResponse response) {
+    public ModelMap sendEmail(HttpServletRequest request, HttpServletResponse response) {
     	
        ModelMap map = new ModelMap();
-       map.put("empCode", empCode );
-       map.put("usage", usage );
-       map.put("date", requestDay );
-       map.put("end", useDay );
+       map.put("empCode", request.getParameter("empCode"));
+       map.put("usage", request.getParameter("usage"));
+       map.put("date", request.getParameter("requestDay"));
+       map.put("end", request.getParameter("useDay"));
        
-       String eMail = email;
+       String eMail = request.getParameter("eMail");
 
        String host = "smtp.naver.com";
        final String user = "wit_wit@naver.com"; 

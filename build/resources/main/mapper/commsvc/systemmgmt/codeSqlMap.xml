@@ -9,13 +9,22 @@
 		<result property="modifiable" column="MODIFIABLE" />
 	</resultMap>
 
+	<resultMap type="kr.co.seoulit.insa.commsvc.systemmgmt.to.AppointmentTO" id="appointmentResult">
+		<result property="appointmentName" column="ANAME" />
+	</resultMap>
+
 	<select id="selectCode" resultMap="codeResult">
 		SELECT CODE_NUMBER
-		, CODE_NAME
-		, MODIFIABLE
+			 , CODE_NAME
+			 , MODIFIABLE
 		FROM DIVISION_CODE
 		ORDER BY CODE_NUMBER
 	</select>
-	
-	
+
+	<select id="selectAppointment" resultMap="appointmentResult">
+		SELECT ANAME
+		FROM APPOINTMENT_SORT
+	</select>
+
+
 </mapper>

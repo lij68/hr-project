@@ -20,7 +20,7 @@ import org.springframework.transaction.interceptor.TransactionInterceptor;
 @Configuration
 public class TransactionAspect {
 
-	private static final int TX_METHOD_TIMEOUT = 10;
+	private static final int TX_METHOD_TIMEOUT = 3;
 	private static final String AOP_TRANSACTION_EXPRESSION = "execution(* kr.co.seoulit.insa..service.*.*(..) ) ";
 
 	@Autowired

@@ -24,7 +24,7 @@
   
    	<select id="batchDayAttdMgtProcess" parameterType="map" statementType="CALLABLE">
 		<![CDATA[
-           {call P_HR_ATTENDANCE.P_CREATE_DAY_ATTD_MANAGE(
+        	{call P_HR_ATTENDANCE.P_CREATE_DAY_ATTD_MANAGE(
              TO_DATE(#{applyDay, mode=IN, jdbcType=DATE, javaType=java.lang.String},'yyyy-mm-dd')
            , #{result, mode=OUT, jdbcType=CURSOR, javaType=java.sql.ResultSet, resultMap=dayAttdMgtResult}
            , #{errorCode, mode=OUT, jdbcType=VARCHAR, javaType=java.lang.String}

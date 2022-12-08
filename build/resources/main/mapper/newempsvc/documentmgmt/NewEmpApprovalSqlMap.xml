@@ -43,15 +43,15 @@
 	<select id="RegisterEmp" parameterType="map"  statementType="CALLABLE">
 		<![CDATA[
         	{call NEW_EMP_INSERT_EMP(
-        	#{pcode, jdbcType=VARCHAR, javaType=java.lang.String, mode=IN},
-        	#{pname, jdbcType=VARCHAR, javaType=java.lang.String, mode=IN},
-        	#{gender, jdbcType=VARCHAR, javaType=java.lang.String, mode=IN},
-        	#{tel, jdbcType=VARCHAR, javaType=java.lang.String, mode=IN},
-        	#{address, jdbcType=VARCHAR, javaType=java.lang.String, mode=IN},
-        	#{email, jdbcType=VARCHAR, javaType=java.lang.String, mode=IN},
-        	#{lastschool, jdbcType=VARCHAR, javaType=java.lang.String, mode=IN},
-        	#{dept, jdbcType=VARCHAR, javaType=java.lang.String, mode=IN},
-        	#{approvalStatus, jdbcType=VARCHAR, javaType=java.lang.String, mode=IN}
+	        	#{pcode, jdbcType=VARCHAR, javaType=java.lang.String, mode=IN},
+	        	#{pname, jdbcType=VARCHAR, javaType=java.lang.String, mode=IN},
+	        	#{gender, jdbcType=VARCHAR, javaType=java.lang.String, mode=IN},
+	        	#{tel, jdbcType=VARCHAR, javaType=java.lang.String, mode=IN},
+	        	#{address, jdbcType=VARCHAR, javaType=java.lang.String, mode=IN},
+	        	#{email, jdbcType=VARCHAR, javaType=java.lang.String, mode=IN},
+	        	#{lastschool, jdbcType=VARCHAR, javaType=java.lang.String, mode=IN},
+	        	#{dept, jdbcType=VARCHAR, javaType=java.lang.String, mode=IN},
+	        	#{approvalStatus, jdbcType=VARCHAR, javaType=java.lang.String, mode=IN}
         	)}
     	]]>	
 	</select>

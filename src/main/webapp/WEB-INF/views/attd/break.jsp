@@ -152,7 +152,7 @@
 
 	/* 휴가신청 그리드 띄우는 함수 */
 	function showBreakListGrid() {
-		var columnDefs = [ {
+		var columnDefs = [{
 			headerName : "사원코드",
 			field : "empCode",
 			hide : true
@@ -302,8 +302,7 @@
 			$("#break_day").val(0.5); //반차라면 무조건 0.5일
 		} else if (anotherCode.includes(selectBreakCode)) {//경조사 및 연차라면 주말, 공휴일을 제외한 계산일수를 반환
 
-			$
-					.ajax({
+			$.ajax({
 						url : "${pageContext.request.contextPath}/foudinfomgmt/holidayweek",
 						data : {
 							"startDate" : startStr,

@@ -6,6 +6,7 @@ import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.PageContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -35,8 +36,10 @@ public class WorkforcePlanningController {
 	@PostMapping("/condition")
 	public ModelMap registTerm(HttpServletRequest request, HttpServletResponse response) {		
 		map = new ModelMap();
-		String sendData = request.getParameter("sendData");
 		ConditionTO nemp = null;
+		String sendData = request.getParameter("sendData");
+		System.out.println("sendData"+sendData);
+		System.out.println(sendData);
 		try
 		{
 			Gson gson = new Gson();

@@ -31,7 +31,7 @@
 		<result property="i_creativity" column="I_CREATIVITY" />
 		<result property="i_positiveness" column="I_POSITIVENESS" />
 	</resultMap>
-	
+
 	<select id="findresumeList" parameterType="map"  statementType="CALLABLE" >
 		<![CDATA[
         	{call RESUME_CONDITION(
@@ -82,7 +82,7 @@
    		
    </update>
    
-      <select id="produceNewcode" parameterType="Map" resultType="String">
+   <select id="produceNewcode" parameterType="Map" resultType="String">
 		SELECT
 			TO_CHAR(P_CODE+1)
 			FROM
@@ -91,7 +91,7 @@
 					P_CODE LIKE TO_CHAR(#{year}) || TO_CHAR(#{half}) || '%'
 					AND
 					ROWNUM = 1
-						ORDER BY P_CODE DESC
+						ORDER BY P_CODE desc
    </select>
    	
    <select id = "insertNewcode" parameterType="Map" resultType="String">
@@ -102,23 +102,8 @@
    </select>
    	
    <insert id="InsertResume" parameterType="kr.co.seoulit.insa.newempsvc.newempinfomgmt.to.NewResumeTO" >
-   <![CDATA[
-		INSERT INTO NEW_EMP_RESUME
+   		INSERT INTO NEW_EMP_RESUME VALUES 
 		(
-			YEAR,
-			HALF,
-			P_CODE,
-			P_NAME,
-			P_AGE,
-			P_GENDER,
-			P_ADDRESS,
-			P_TEL,
-			P_EMAIL,
-			P_DEPT,
-			P_LAST_SCHOOL,
-			P_CAREER
-		)
-		SELECT 
 			#{year},
 			#{half},
 			#{p_code},
@@ -131,44 +116,12 @@
 			#{p_dept},
 			#{p_last_school},
 			#{p_career}
-			FROM
-			(
-				SELECT
-					YEAR,
-					HALF
-					FROM
-						TERMS_EMP
-						WHERE
-							( YEAR = #{year} AND HALF = #{half} ) AND
-							( MIN_AGE < #{p_age} AND MAX_AGE > #{p_age} ) AND
-							( DEPT = #{p_dept} OR DEPT = '무관' ) AND
-							(
-								( SELECT DECODE( #{p_last_school}, '초졸', 1, '중졸', 2, '고졸', 3, '2년제대학', 4, '4년제대학', 5, 0 )
-								FROM DUAL )
-									>=
-								( SELECT DECODE( LAST_SCHOOL, '초졸', 1, '중졸', 2, '고졸', 3, '2년제대학', 4, '4년제대학', 5, 0 )
-								FROM TERMS_EMP WHERE YEAR = #{year} AND HALF = #{half} )
-							)
-			)
-	]]>	
+		)
    </insert>
    	
    <insert id="InsertPI" parameterType="kr.co.seoulit.insa.newempsvc.newempinfomgmt.to.PersonalityInterviewTO" >
-   		INSERT INTO PERSONALITY_INTERVIEW
+   		INSERT INTO PERSONALITY_INTERVIEW VALUES
 		(
-             P_CODE, 
-             P_CHALLENGE, 
-             P_CREATIVITY, 
-             P_PASSION, 
-             P_COOPERATION, 
-             P_GLOBALMIND, 
-             I_ATTITUDE, 
-             I_SCRUPULOSITY, 
-             I_RELIABILITY, 
-             I_CREATIVITY, 
-             I_POSITIVENESS
-		)
-		SELECT
 			#{p_code},
 			#{p_challenge},
 			#{p_creativity},
@@ -180,8 +133,6 @@
 			#{i_reliability},
 			#{i_creativity},
 			#{i_positiveness}
-			FROM
-				(SELECT P_CODE FROM NEW_EMP_RESUME WHERE P_CODE = #{p_code})
-   </insert>
-   
+		)
+   	</insert>
 </mapper>

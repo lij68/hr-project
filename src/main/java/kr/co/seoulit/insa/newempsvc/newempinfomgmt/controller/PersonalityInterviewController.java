@@ -26,8 +26,9 @@ public class PersonalityInterviewController
 	@GetMapping("/piresultnewemp")
 	public ModelMap PersonalityInterview(HttpServletRequest request, HttpServletResponse response) {
 		map = new ModelMap();
-		String sendData = request.getParameter("sendData");
 		try {
+			
+			String sendData = request.getParameter("sendData");
 			JSONObject json = JSONObject.fromObject(sendData);
 			int year = Integer.parseInt( (String)json.get("year") );
 			String half = json.getString("half");

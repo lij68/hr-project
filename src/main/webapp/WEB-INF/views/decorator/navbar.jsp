@@ -46,7 +46,7 @@
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
         
-<script type="text/javascript" src="${pageContext.request.contextPath}/insa/js/wow.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/wow.js"></script>
 
 
 <style>

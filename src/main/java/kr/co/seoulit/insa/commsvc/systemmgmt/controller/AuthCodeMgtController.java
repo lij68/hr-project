@@ -8,7 +8,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import kr.co.seoulit.insa.commsvc.systemmgmt.service.SystemMgmtService;
@@ -39,10 +38,11 @@ public class AuthCodeMgtController {
 	}
 	
 	@PutMapping("authcode")
-	public ModelAndView modifyAuthority(@RequestParam("empCode") String empCode, @RequestParam("adminCode") String adminCode,
-			HttpServletResponse response){		
+	public ModelAndView modifyAuthority(HttpServletRequest request, HttpServletResponse response){		
+		map = new ModelMap();		
+		String empCode = request.getParameter("empCode");
+		String adminCode = request.getParameter("adminCode");
 		
-		map = new ModelMap();				
 			try {
 				systemMgmtService.modifyAuthority(empCode , adminCode);
 				map.put("errorCode", 0);

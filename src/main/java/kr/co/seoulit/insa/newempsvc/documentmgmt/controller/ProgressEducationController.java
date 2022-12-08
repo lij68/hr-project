@@ -34,9 +34,10 @@ public class ProgressEducationController
 	@PostMapping("/educationmgmt")
 	public ModelMap educationManage(HttpServletRequest request, HttpServletResponse response) {		
 		map = new ModelMap();
-		String sendData = request.getParameter("jsonData");
+		
 		try
 		{
+			String sendData = request.getParameter("jsonData");
 			System.out.println(sendData);
 			JSONObject jsonobj = JSONObject.fromObject(sendData);
 			JSONArray jsonarr_data = JSONArray.fromObject(jsonobj.get("data"));

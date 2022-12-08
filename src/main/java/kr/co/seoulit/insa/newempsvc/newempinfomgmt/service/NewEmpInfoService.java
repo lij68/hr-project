@@ -2,6 +2,8 @@ package kr.co.seoulit.insa.newempsvc.newempinfomgmt.service;
 
 import java.util.ArrayList;
 
+import kr.co.seoulit.insa.newempsvc.documentmgmt.to.GanttDataTO;
+import kr.co.seoulit.insa.newempsvc.documentmgmt.to.GanttLinksTO;
 import kr.co.seoulit.insa.newempsvc.newempinfomgmt.to.ApplicantTO;
 import kr.co.seoulit.insa.newempsvc.newempinfomgmt.to.NewResumeTO;
 import kr.co.seoulit.insa.newempsvc.newempinfomgmt.to.PersonalityInterviewTO;

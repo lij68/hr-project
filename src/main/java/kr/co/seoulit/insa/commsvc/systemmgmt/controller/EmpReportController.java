@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import kr.co.seoulit.insa.commsvc.systemmgmt.service.SystemMgmtService;
 import kr.co.seoulit.insa.commsvc.systemmgmt.to.ReportSalaryTO;
@@ -33,13 +32,18 @@ public class EmpReportController {
 	ModelMap map = null;
 	
 	@GetMapping("report")
-	public ModelMap requestEmployment(@RequestParam("empCode") String empCode, @RequestParam("usage") String usage,
-			@RequestParam("requestDay") String requestDay, @RequestParam("useDay") String useDay,
-			HttpServletRequest request, HttpServletResponse response) { // 재직증명서 신청
+	public ModelMap requestEmployment(HttpServletRequest request, HttpServletResponse response) { // 재직증명서 신청
+
+		String empCode = request.getParameter("empCode"); // 해쉬맵 생성, URL에서 보낸 파라미터값을 맵에 담는다
+		String usage = request.getParameter("usage");
+		String requestDay = request.getParameter("requestDay");
+		String useDay = request.getParameter("useDay");
 
 		response.setContentType("application/json; charset=UTF-8");
 		response.setCharacterEncoding("utf-8");
+
 		map = new ModelMap();
+		
 		try {
 
 			ReportTO to = systemMgmtService.viewReport(empCode);
@@ -93,14 +97,17 @@ public class EmpReportController {
 		return map;
 	}
 
-	public ModelMap requestMonthSalary(@RequestParam("empCode") String empCode, @RequestParam("applyMonth") String applyMonth,
-			HttpServletRequest request, HttpServletResponse response) { // 월급여신청
+	public ModelMap requestMonthSalary(HttpServletRequest request, HttpServletResponse response) { // 월급여신청
 
 		map = new ModelMap();
-		map.put("empCode", empCode); // URL에서 보낸 파라미터값을 맵에 담는다.
-		map.put("applyMonth", applyMonth);
+		map.put("empCode", request.getParameter("empCode")); // URL에서 보낸 파라미터값을 맵에 담는다.
+		map.put("applyMonth", request.getParameter("applyMonth"));
+
 		response.setContentType("application/json; charset=UTF-8");
 		response.setCharacterEncoding("utf-8");
+
+		String empCode = request.getParameter("empCode");
+		String applyMonth = request.getParameter("applyMonth");
 
 		try {
 			ReportSalaryTO to = systemMgmtService.viewSalaryReport(empCode, applyMonth);

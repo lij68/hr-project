@@ -2,18 +2,18 @@
 	pageEncoding="UTF-8"%>
 <!-- jquery -->
 <script
-	src="${pageContext.request.contextPath}/insa/script/jquery/jquery-3.3.1.min.js"></script>
+	src="${pageContext.request.contextPath}/script/jquery/jquery-3.3.1.min.js"></script>
 
 
 <!-- jquery-ui -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/insa/script/jquery-ui/jquery-ui.min.css">
+	href="${pageContext.request.contextPath}/script/jquery-ui/jquery-ui.min.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/insa/script/jquery-ui/jquery-ui.structure.css">
+	href="${pageContext.request.contextPath}/script/jquery-ui/jquery-ui.structure.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/insa/script/jquery-ui/jquery-ui.theme.min.css">
+	href="${pageContext.request.contextPath}/script/jquery-ui/jquery-ui.theme.min.css">
 <script
-	src="${pageContext.request.contextPath}/insa/script/jquery-ui/jquery-ui.min.js"></script>
+	src="${pageContext.request.contextPath}/script/jquery-ui/jquery-ui.min.js"></script>
 
 <!-- 주소검색 -->
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
@@ -21,13 +21,13 @@
 
 <!-- timepicker -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/insa/script/jquery-ui/jquery.timepicker.css" />
+	href="${pageContext.request.contextPath}/script/jquery-ui/jquery.timepicker.css" />
 <script
-	src="${pageContext.request.contextPath}/insa/script/jquery/jquery.timepicker.min.js"></script>
+	src="${pageContext.request.contextPath}/script/jquery/jquery.timepicker.min.js"></script>
 
 <!-- fileUpload -->
 <script
-	src="${pageContext.request.contextPath}/insa/script/jquery/jquery.form.min.js"></script>
+	src="${pageContext.request.contextPath}/script/jquery/jquery.form.min.js"></script>
 
 <style>
 /* 메뉴바 jqgrid 위로 보이게하기 */

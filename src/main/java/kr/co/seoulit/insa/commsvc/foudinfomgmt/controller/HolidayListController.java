@@ -12,7 +12,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/foudinfomgmt/*")
@@ -45,10 +44,12 @@ public class HolidayListController {
 	}
 
 	@GetMapping("holidayweek")
-	public ModelMap findWeekDayCount(@RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate,
-			HttpServletResponse response) {
+	public ModelMap findWeekDayCount(HttpServletRequest request, HttpServletResponse response) {
 		map = new ModelMap();
-		response.setContentType("application/json; charset=UTF-8");		
+		response.setContentType("application/json; charset=UTF-8");
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
+		
 		try {
 			String weekdayCount = foudInfoMgmtService.findWeekDayCount(startDate, endDate);
 			map.put("weekdayCount", weekdayCount);

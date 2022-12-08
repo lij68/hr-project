@@ -337,8 +337,9 @@ function getCodeRest(code1,code2,code3, inputText, inputCode) {
 	option = "width=220; height=200px; left=300px; top=300px; titlebar=no; toolbar=no,status=no,menubar=no,resizable=no, location=no";
 	window.open(
 			"${pageContext.request.contextPath}/comm/codeWindow/view?code1="
-					+ code1 +"&code2="+code2+"&code3="+code3+ "&inputText=" + inputText + "&inputCode="
-					+ inputCode, "newwins", option);
+			+ code1 +"&code2="+code2+"&code3=" + code3
+			+ "&inputText=" + inputText + "&inputCode=" + inputCode,
+			"newwins", option);
 }
 
 

@@ -7,14 +7,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/insa/css/animate.css"/>
-    <link href="${pageContext.request.contextPath}/insa/vendor/fontawesome-free/css/all.min.css"
-          rel="stylesheet" type="text/css">          
-    <link href="${pageContext.request.contextPath}/insa/css/sb-admin-2.css"
-    	rel="stylesheet" type="text/css">
-    <script src="${pageContext.request.contextPath}/insa/js/sb-admin-2.js"></script>
-    <script src="${pageContext.request.contextPath}/insa/vendor/chart.js/Chart.min.js"></script>
-    <script src="${pageContext.request.contextPath}/insa/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css"/>
+    <link href="${pageContext.request.contextPath}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">          
+    <link href="${pageContext.request.contextPath}/css/sb-admin-2.css" rel="stylesheet" type="text/css">
+    <script src="${pageContext.request.contextPath}/js/sb-admin-2.js"></script>
+    <script src="${pageContext.request.contextPath}/vendor/chart.js/Chart.min.js"></script>
+    <script src="${pageContext.request.contextPath}/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="https://unpkg.com/@ag-grid-enterprise/all-modules@24.1.0/dist/ag-grid-enterprise.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
     <script src="https://unpkg.com/ag-grid/dist/ag-grid.min.js"></script>
@@ -24,14 +22,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css"/>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     
-    <script src="${pageContext.request.contextPath}/insa/js/dhtmlxgantt.js?v=7.1.12"></script>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/insa/css/dhtmlxgantt.css?v=7.1.12" />
+    <script src="${pageContext.request.contextPath}/js/dhtmlxgantt.js?v=7.1.12"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/dhtmlxgantt.css?v=7.1.12" />
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script> -->
 	
 
     <jsp:include page="head.jsp"/>
-    <title>HRProject</title>
+    <title>Insa Testing</title>
     <sitemesh:write property='head'/>
 
     <c:if test="${requestScope.errorMsg != null}">

@@ -1,5 +1,6 @@
 package kr.co.seoulit.insa.commsvc.systemmgmt.to;
 
+import kr.co.seoulit.insa.commsvc.systemmgmt.to.BaseTO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

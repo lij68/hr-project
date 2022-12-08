@@ -39,10 +39,11 @@ public class EmpAppointmentController {
 	}
 
 	@GetMapping("/appointmentemp")
-	public ModelMap findAllAppointEmp(@RequestParam("hosu") String hosu, HttpServletResponse response) {
+	public ModelMap findAllAppointEmp(HttpServletRequest request, HttpServletResponse response) {
 
 		map = new ModelMap();
 		try {
+			String hosu = request.getParameter("hosu");
 			ArrayList<EmpAppointmentTypeTO> list = empInfoService.findAllAppointEmp(hosu);
 			EmpAppointmentTO list1 = empInfoService.countAppointmentEmp(hosu);
 			map.put("list", list);
@@ -55,11 +56,11 @@ public class EmpAppointmentController {
 	}
 
 	@GetMapping("/appointmentemptype")
-	public ModelMap findAppointmentEmp(@RequestParam("hosu") String hosu, @RequestParam("type") String type,
-			HttpServletResponse response) {
-		
+	public ModelMap findAppointmentEmp(HttpServletRequest request, HttpServletResponse response) {
 		map = new ModelMap();
 		try {
+			String hosu = request.getParameter("hosu");
+			String type = request.getParameter("type");
 			ArrayList<EmpAppointmentTypeTO> list = empInfoService.findAppointmentInfoEmp(hosu, type);
 			map.put("typelist", list);
 		} catch (Exception e) {
@@ -71,7 +72,6 @@ public class EmpAppointmentController {
 
 	@GetMapping("/gethosu")
 	public ModelMap registhosu(HttpServletRequest request, HttpServletResponse response) {
-		
 		map = new ModelMap();
 		try {
 			EmpAppointmentInfoTO infoTO = empInfoService.generateHosu();
@@ -166,9 +166,11 @@ public class EmpAppointmentController {
 	}
 
 	@GetMapping("findChangeDetail")
-	public ModelMap findChangeDetail(@RequestParam("empCode") String empCode, @RequestParam("hosu") String hosu) {
+	public ModelMap findChangeDetail(HttpServletRequest request) {
 		map = new ModelMap();
 		try {
+			String empCode = request.getParameter("empCode");
+			String hosu = request.getParameter("hosu");
 			ArrayList<EmpAppointmentTO> changeDetailList = empInfoService.findChangeDetailList(empCode, hosu);
 			map.put("changeDetailList", changeDetailList);
 			map.put("errorMsg", "success");

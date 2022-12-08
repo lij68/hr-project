@@ -171,7 +171,7 @@ function saveInfo(){
          changeMonth : true,
          changeYear : true,
          showOn:"button",
-         buttonImage:"${pageContext.request.contextPath}/insa/image/cal.png",
+         buttonImage:"${pageContext.request.contextPath}/image/cal.png",
          buttonImageOnly:true,
          dateFormat : "yy/mm/dd",
          dayNamesMin : [ "일", "월", "화", "수", "목", "금", "토" ],
@@ -224,7 +224,7 @@ function saveInfo(){
         <div id="registTab1">
          <!-- 사진박스 -->
          <div id="divImg" style="display:inline-block;"> 
-            <img id="profileImg" src="${pageContext.request.contextPath}/insa/profile/profile.png" width="180px" height="200px"><br>
+            <img id="profileImg" src="${pageContext.request.contextPath}/profile/profile.png" width="180px" height="200px"><br>
             <form id="emp_img_form" action="${pageContext.request.contextPath }/foudinfomgmt/empImg.do" enctype="multipart/form-data" method="post"> 
                <input type="hidden" name="empCode" id="emp_img_empCode">
                <input type="file" name="empImgFile" style="display: none;" id="emp_img_file" onChange="readURL(this)">
